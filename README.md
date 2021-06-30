@@ -2,6 +2,12 @@
 
 Experimenting with federated GraphQL via Apollo and MongoDB, hence gammon-feed
 
+### Requirements
+
+- npm/yarn
+- nvm
+- docker
+
 ### Getting started
 
 ```

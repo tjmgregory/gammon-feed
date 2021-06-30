@@ -7,7 +7,7 @@
   "author": "Theo Gregory <tjmg@outlook.com>",
   "license": "MIT",
   "scripts": {
-    "start": "initialise:mongo-db && concurrently --kill-others yarn:start:*",
+    "start": "yarn initialise:mongo-db && concurrently --kill-others yarn:start:*",
     "start:gateway": "nodemon gateway.js",
     "start:fish-server": "nodemon fish.js",
     "start:seas-server": "nodemon seas.js",
