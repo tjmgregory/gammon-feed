@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently --kill-others yarn:start:*",
-    "start:fish-server": "nodemon fish.js"
+    "start:fish-server": "nodemon fish.js",
+    "start:seas-server": "nodemon seas.js"
   },
   "dependencies": {
     "apollo-server": "^2.25.2",

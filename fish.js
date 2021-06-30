@@ -1,5 +1,7 @@
 const { gql, ApolloServer } = require('apollo-server')
 
+const PORT = 4002
+
 const typeDefs = gql`
     type Fish {
         name: String
@@ -29,8 +31,8 @@ const resolvers = {
     },
 }
 
-const server = new ApolloServer({ typeDefs, resolvers, cors: { origin: '*' } })
+const server = new ApolloServer({ typeDefs, resolvers })
 
-server.listen().then(({ url }) => {
+server.listen({ port: PORT }).then(({ url }) => {
     console.log(`🐠 Fishes officially swimming at ${url}.`)
 })
