@@ -4,7 +4,7 @@ const { gql, ApolloServer } = require('apollo-server')
 const PORT = 4002
 
 const typeDefs = gql`
-    type Fish {
+    type Fish @key(fields: "id") {
         id: ID!
         name: String
         colour: String
@@ -22,7 +22,7 @@ const typeDefs = gql`
     }
 `
 
-const fish = [
+const fishies = [
     {
         id: '1',
         name: 'Shark',
@@ -40,11 +40,12 @@ const fish = [
 
 const resolvers = {
     Fish: {
+        __resolveReference: (ref) => fishies.find((fish) => fish.id === ref.id),
         sea: (fish) => ({ __typename: 'Sea', id: fish.sea }),
     },
     Query: {
-        fish: (_, { id }) => fish.find((fish) => fish.id === id),
-        fishies: () => fish,
+        fish: (_, { id }) => fishies.find((fish) => fish.id === id),
+        fishies: () => fishies,
     },
 }
 

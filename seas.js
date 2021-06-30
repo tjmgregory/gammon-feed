@@ -8,6 +8,11 @@ const typeDefs = gql`
         id: ID!
         name: String
         volume: Int
+        containedFish: [Fish]
+    }
+
+    extend type Fish @key(fields: "id") {
+        id: ID! @external
     }
 
     extend type Query {
@@ -21,17 +26,24 @@ const seas = [
         id: '1',
         name: 'Atlantic',
         volume: 24948,
+        containedFish: [],
     },
     {
         id: '2',
         name: 'Pacific',
         volume: 88888,
+        containedFish: ['1', '2'],
     },
 ]
 
 const resolvers = {
     Sea: {
         __resolveReference: (ref) => seas.find((sea) => sea.id === ref.id),
+        containedFish: (sea) =>
+            sea.containedFish.map((fish) => ({
+                __typename: 'Fish',
+                id: fish,
+            })),
     },
     Query: {
         sea: (_, { id }) => seas.find((sea) => sea.id === id),
