@@ -1,3 +1,4 @@
+const { buildFederatedSchema } = require('@apollo/federation')
 const { gql, ApolloServer } = require('apollo-server')
 
 const PORT = 4002
@@ -31,7 +32,9 @@ const resolvers = {
     },
 }
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+    schema: buildFederatedSchema([{ typeDefs, resolvers }]),
+})
 
 server.listen({ port: PORT }).then(({ url }) => {
     console.log(`🐠 Fishes officially swimming at ${url}.`)

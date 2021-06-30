@@ -15,6 +15,6 @@ const server = new ApolloServer({
     subscriptions: false,
 })
 
-server.listen({ port }).then(({ url }) => {
+server.listen({ port: PORT }).then(({ url }) => {
     console.log(`Gateway ready at ${url}`)
 })

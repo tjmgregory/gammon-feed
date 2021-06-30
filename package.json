@@ -13,7 +13,9 @@
     "start:seas-server": "nodemon seas.js"
   },
   "dependencies": {
+    "@apollo/federation": "^0.25.2",
     "@apollo/gateway": "^0.31.0",
+    "@opentelemetry/api": "^1.0.1",
     "apollo-server": "^2.25.2",
     "graphql": "^15.5.1"
   },
